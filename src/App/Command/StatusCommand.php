@@ -8,6 +8,7 @@ use App\Exception\InvalidArgumentException;
 use App\Exception\RuntimeException;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -50,12 +51,12 @@ class StatusCommand extends Command
         $output->writeln(sprintf("<info>Getting status of job '%s'</info>", $job));
 
         if (empty($this->config['token'])) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "You must configure a token in 'config/autoload/diawi.local.php' to be able to access there API"
-                )
-            );
+            $command = $this->getApplication()->find('configure');
+            $command->run(new ArrayInput(['option' => 'token']), $output);
+
+            exit(0);
         }
+
 
         $result   = null;
         $attempts = 0;

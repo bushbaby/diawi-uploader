@@ -12,6 +12,10 @@ use Zend\Stdlib\Glob;
  * Obviously, if you use closures in your config you can't cache it.
  */
 
+
+
+
+
 $cachedConfigFile = 'data/cache/app_config.php';
 
 $config = [];
@@ -22,6 +26,16 @@ if (is_file($cachedConfigFile)) {
     // Load configuration from autoload path
     foreach (Glob::glob('config/autoload/{{,*.}global,{,*.}local}.php', Glob::GLOB_BRACE) as $file) {
         $config = ArrayUtils::merge($config, include $file);
+
+        if (isset($_SERVER['HOME'])) {
+            $home = $_SERVER['HOME'];
+        } elseif(isset($_SERVER['HOMEPATH'])) {
+            $home = $_SERVER['HOMEPATH'];
+        }
+
+        if ($home && file_exists($home . '/.diawi-uploader.php')) {
+            $config = ArrayUtils::merge($config, include $home . '/.diawi-uploader.php');
+        }
     }
 
     // Cache config if enabled

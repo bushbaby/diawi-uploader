@@ -68,11 +68,10 @@ class UploadCommand extends Command
         }
 
         if (empty($this->config['token'])) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "You must configure a token in 'config/autoload/diawi.local.php' to be able to access there API"
-                )
-            );
+            $command = $this->getApplication()->find('configure');
+            $command->run(new ArrayInput(['option' => 'token']), $this->output);
+
+            exit(0);
         }
 
         $this->client = new Client([

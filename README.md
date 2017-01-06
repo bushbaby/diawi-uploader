@@ -19,10 +19,24 @@ Installs this globally (usually to ~/.composer) so as long as ~/.composer/bin is
 
 ## Configuration
 
-You'll need to add a API token from diawi.com to config/autoload/diawi.local.php
+You'll need to add a API token from diawi.com. Use the configure command to store it.
 
 
 ## Usage Commands
+
+Configuration
+
+```
+diawi-uploader configure <option>
+```
+
+Will ask you for the appriopiate information regarding the option and persists it to `~/.diawi-uploader.php`.
+
+supported options:
+
+- token: The API token provided by diawi.com
+- find_by_udid: May users find apps by apps device id on diawi.com
+- wall_of_apps: Should apps by advertised on the 'wall of apps'.
 
 To upload a file to diawi use this simple command.
 
