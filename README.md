@@ -24,7 +24,7 @@ You'll need to add a API token from diawi.com. Use the configure command to stor
 
 ## Usage Commands
 
-Configuration
+### Configure
 
 ```
 diawi-uploader configure <option>
@@ -35,8 +35,12 @@ Will ask you for the appriopiate information regarding the option and persists i
 supported options:
 
 - token: The API token provided by diawi.com
-- find_by_udid: May users find apps by apps device id on diawi.com
-- wall_of_apps: Should apps by advertised on the 'wall of apps'.
+- find\_by_udid: May users find apps by apps device id on diawi.com
+- wall\_of_apps: Should apps by advertised on the 'wall of apps'.
+
+Use `diawi-uploader configure` to show the currently set configuration options.
+
+### Upload
 
 To upload a file to diawi use this simple command.
 
@@ -45,6 +49,8 @@ diawi-uploader upload <path>
 ```
 
 To poll the processing of a job run the following command. Note that running the upload command will run this command automaticly.
+
+### Status
 
 ```
 diawi-uploader status <job>
