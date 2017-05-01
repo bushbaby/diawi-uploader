@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Command;
 
-use App\Exception\InvalidArgumentException;
 use App\Exception\RuntimeException;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
@@ -90,10 +87,10 @@ class StatusCommand extends Command
                 exit(1);
             }
 
-            if (!$result) {
+            if (! $result) {
                 sleep(1);
             }
-        } while (!$result);
+        } while (! $result);
 
         $output->writeln('');
 
@@ -110,7 +107,11 @@ class StatusCommand extends Command
         return 0;
     }
 
-    private function pollStatus(string $job)
+    /**
+     * @param string $job
+     * @return null
+     */
+    private function pollStatus($job)
     {
         $this->client = new Client([
             'base_uri' => $this->config['endpoint'],

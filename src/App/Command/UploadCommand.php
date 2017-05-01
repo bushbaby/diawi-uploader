@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Command;
 
 use App\Exception\InvalidArgumentException;
@@ -87,11 +85,11 @@ class UploadCommand extends Command
                 ],
                 [
                     'name'     => 'find_by_udid',
-                    'contents' => $this->config['find_by_udid'] ?? 0,
+                    'contents' => isset($this->config['find_by_udid']) ? $this->config['find_by_udid'] : 0,
                 ],
                 [
                     'name'     => 'wall_of_apps',
-                    'contents' => $this->config['wall_of_apps'] ?? 0,
+                    'contents' => isset($this->config['wall_of_apps']) ? $this->config['wall_of_apps'] : 0,
                 ],
                 [
                     'name'     => 'file',
