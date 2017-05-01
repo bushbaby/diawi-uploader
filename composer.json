@@ -7,6 +7,7 @@
   "require":      {
     "php":                               "^5.5 || ^7.0",
     "roave/security-advisories":         "dev-master",
+    "zendframework/zend-stdlib":         "^2.0 || ^3.0",
     "zendframework/zend-servicemanager": "^2.7.3 || ^3.0",
     "symfony/console":                   "^3.2",
     "guzzlehttp/guzzle":                 "^6.2"
